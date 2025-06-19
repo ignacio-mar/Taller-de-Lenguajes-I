@@ -1,0 +1,19 @@
+
+1)
+a. ¿En qué se diferencia la función malloc de la función calloc? ¿Y de la función realloc?
+malloc: reserva una cantidad de memoria especificada (en bytes), pero no la inicializa. El contenido de la memoria es indefinido (basura).
+
+calloc: también reserva memoria, pero además la inicializa en cero. Requiere dos parámetros: la cantidad de elementos y el tamaño de cada uno. Es útil para arreglos o estructuras que deben comenzar con valores nulos.
+
+realloc: permite cambiar el tamaño de un bloque de memoria previamente reservado con malloc o calloc. Puede ampliar, reducir o incluso mover el bloque si no hay espacio contiguo disponible. Si se amplía, la nueva parte de memoria no está inicializada.                  
+
+b. ¿Puede utilizarse la función realloc en lugar de la función malloc? ¿Se requiere alguna condición? ¿Qué sucede si realloc se invoca con el valor 0 como parámetro?
+Sí, realloc puede usarse como malloc si el puntero original es NULL. En ese caso, se comporta como una llamada a malloc.
+
+Si realloc se llama con un tamaño de 0, lo que hace es liberar la memoria apuntada por el puntero, y devuelve NULL. Es decir, actúa como si se llamara a free.
+
+c. ¿Qué utilidad tiene el operador sizeof a la hora de reservar memoria dinámicamente?
+El operador sizeof devuelve la cantidad de bytes que ocupa un tipo de dato. Al reservar memoria dinámicamente con malloc, calloc o realloc, se usa sizeof para asegurarse de pedir exactamente el tamaño necesario, de forma correcta y portable.
+
+2) 
+Porque en C, los punteros se pasan por valor. Si querés que una función pueda modificar el puntero original, tenés que pasar la dirección del puntero.
