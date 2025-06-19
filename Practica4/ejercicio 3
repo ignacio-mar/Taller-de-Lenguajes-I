@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+void reservar(int **,int);
+void inicializar(int *,int);
+int maximo(int *,int);
+int main(){
+ int *ptr;
+ int n;
+ printf("ingrese un numero n: ");
+ scanf(" %d",&n);
+ reservar(&ptr,n);
+ inicializar(&ptr,n);
+ printf("el mayor numero del vector es %d",maximo(&ptr,n));
+ free(ptr);
+}
+void reservar(int **ptr,int n){
+ptr=(int*)malloc(n*sizeof(int));
+}
+void inicializar(int *ptr,int n){
+srand(time(NULL));
+for(int i=0; i<n;i++){
+    ptr[i]=rand();
+}
+}
+int maximo(int *ptr, int n){
+int max=-10000;
+for(int i=0;i<n;i++){
+    if(ptr[i]>max)
+        max=ptr[i];
+}
+return max;
+}
