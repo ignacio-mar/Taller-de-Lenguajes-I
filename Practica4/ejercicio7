@@ -1,1 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Nodo{
+  int dato;
+  struct Nodo *sig;
+}Nodo;
+Nodo* inicializarLista();
+void eliminarLista(Nodo **);
+void agregarPrincipio(Nodo **,int);
+void agregarFinal(Nodo **,int);
+int cantidad(Nodo *);
+void imprimirElementos(Nodo *);
+
+int main(){
+  Nodo *lista=inicializarLista();
+  int num;
+  printf("ingrese numero a agregar ");
+  scanf("%d",&num);
+  while(num!=0){
+
+    agregarFinal(&lista,num);
+    printf("ingrese numero a agregar ");
+  scanf("%d",&num);
+  }
+  Nodo *nuevaLista=inicializarLista();
+  Nodo *aux=lista;
+  while(aux!=NULL){
+    agregarPrincipio(&nuevaLista,aux->dato);
+    aux=aux->sig;
+  }
+  printf("los datos de la primera lista son: ");
+  imprimirElementos(lista);
+  printf("\n");
+  printf("los datos de la lista invertida son: ");
+  imprimirElementos(nuevaLista);
+  free(lista);
+  free(nuevaLista);
+}
+Nodo* inicializarLista(){
+  return NULL;
+}
+
+void eliminarLista(Nodo **lista){
+Nodo *actual=*lista;
+while(actual!=NULL){
+    Nodo *temporal=actual;
+    actual=temporal->sig;
+    free(temporal);
+}
+*lista=NULL;
+}
+void agregarPrincipio(Nodo **lista, int dato){
+Nodo *nuevo=(Nodo *)malloc(sizeof(Nodo));
+nuevo->dato=dato;
+nuevo->sig=*lista;
+*lista=nuevo;
+}
+void agregarFinal(Nodo **lista,int dato){
+Nodo *nuevo=(Nodo *)malloc(sizeof(Nodo));
+nuevo->dato=dato;
+if(*lista==NULL){
+    *lista=nuevo;
+}else{
+Nodo *aux=*lista;
+while(aux->sig!=NULL){
+    aux=aux->sig;
+}
+aux->sig=nuevo;
+}}
+int cantidad(Nodo *lista){
+int cant=0;
+while(lista!=NULL){
+    cant++;
+    lista=lista->sig;
+}
+return cantidad;
+}
+void imprimirElementos(Nodo *lista){
+while(lista!=NULL){
+    printf("%d, ",lista->dato);
+    lista=lista->sig;
+}
+
+}
 
