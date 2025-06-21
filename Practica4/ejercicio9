@@ -1,0 +1,21 @@
+codigo 1:
+es un arreglo estatico, ya que el tamaño se determina en tiempo de compilacion, el limite del tamaño depende del stack.
+no se puede cambiar el tamaño en tiempo de ejecucion.no se puede liberar memoria reservada.
+no, "arreglo1" es un nombre fijo. si cumple con ANSI C90.
+
+codigo 2:
+es un arreglo de longitud variable, la cantidad de memoria a reservar se determina en tiempo de ejecucion. depende del stack.
+no se puede cambiar el tamaño en ejecucion ya que se fija al momento de declarar. la memoria reservada no se libera manualmente.
+el nombre del arreglo no puede apuntar a otra direccion.
+el codigo: 
+{int n;
+ scanf("%d",&n);
+ /* el usuario ingresa 50 */
+ int arreglo3[n]; }
+ no compila en ANSI C90.
+
+
+codigo 3:
+Es un arreglo dinamico, el tamaño a reservar se determina en tiempo de ejecucion. el limite del tamaño depende de la heap.
+si se puede cambiar el tamaño en ejecucion. se puede liberar la memoria reservada. el nombre del arreglo puede apuntar a otra direccion.
+si es valido en ANSI C90.
