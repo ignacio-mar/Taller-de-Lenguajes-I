@@ -2,3 +2,28 @@ a)
 se puede modelar un arreglo dinamico de 6 lugares, tambien se puede modelar una matriz de 3 filas y 2 columnas o 2 filas y 3 columnas.
 b)
 si, en ese caso habria que acceder a cada posicion como m[fila*y + columna];
+c)
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+int n,m;
+printf("ingrese numero de filas: ");
+scanf("%d", &n);
+printf("ingrese numero de columnas: ");
+scanf("%d", &m);
+int *matriz=(int *)malloc(m*n*sizeof(int));
+
+for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+          printf("ingrese el numero de la fila %d y de la columna %d",i+1,j+1);
+          scanf("%d",&matriz[i*m +j]);
+        }
+}
+for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+          printf("el numero de la fila %d y de la columna %d es %d",i+1,j+1,matriz[i*m +j]);
+        }
+}
+free(matriz);
+
+}
