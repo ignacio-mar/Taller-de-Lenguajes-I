@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void inicializar(double *, int);
+double promedioPorArreglos(double *, int);
+double promedioPorPunteros(double *, int);
+void liberacion(double *);
+
+int main() {
+    int n;
+    printf("Ingrese numero n: ");
+    scanf("%d", &n);
+
+    double *arreglo = (double *)malloc(n * sizeof(double));
+    if (arreglo == NULL) {
+        printf("Error al reservar memoria\n");
+        return 1;
+    }
+
+    inicializar(arreglo, n);
+
+    printf("El promedio por notacion de punteros es %f\n", promedioPorPunteros(arreglo, n));
+    printf("El promedio por notacion de arreglos es %f\n", promedioPorArreglos(arreglo, n));
+
+    liberacion(arreglo);
+
+    return 0;
+}
+
+void inicializar(double *arreglo, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Ingrese el numero de la posicion %d: ", i + 1);
+        scanf("%lf", &arreglo[i]);  // %lf para double
+    }
+}
+
+double promedioPorArreglos(double *arreglo, int n) {
+    double suma = 0;
+    for (int i = 0; i < n; i++) {
+        suma += arreglo[i];
+    }
+    return suma / n;
+}
+
+double promedioPorPunteros(double *arreglo, int n) {
+    double suma = 0;
+    for (int i = 0; i < n; i++) {
+        suma += *(arreglo + i);
+    }
+    return suma / n;
+}
+
+void liberacion(double *arreglo) {
+    free(arreglo);
+}
