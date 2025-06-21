@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+void reservar(int **,int);
+void inicializar(int *,int );
+void imprimirMultiplos(int *,int);
+void liberacion(int *);
+int main(){
+int n;
+printf("ingrese numero n: ");
+scanf("%d", &n);
+
+int *arreglo;
+reservar(&arreglo,n);
+if(arreglo==NULL){
+        printf("no se puede");
+    return 1;
+}
+inicializar(arreglo, n);
+imprimirMultiplos(arreglo,n);
+liberacion(arreglo);
+}
+void reservar(int **arreglo,int n){
+*arreglo=(int *)malloc(n*sizeof(int));
+}
+void inicializar(int *arreglo,int n){
+for(int i=0;i<n;i++){
+        printf("ingrese el numero de la posicion %d: ",i+1);
+        scanf("%d",&arreglo[i]);
+    }
+
+}
+
+void imprimirMultiplos(int *arreglo,int n){
+   for(int i=0;i<n;i++){
+        if(arreglo[i]%3==0)
+            printf("el numero de la posicion %d es multiplo de 3\n ",i+1);
+    }
+
+}
+
+
+
+void liberacion(int *arreglo){
+ free(arreglo);
+}
