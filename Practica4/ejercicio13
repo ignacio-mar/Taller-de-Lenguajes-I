@@ -1,0 +1,4 @@
+a)
+se puede modelar un arreglo dinamico de 6 lugares, tambien se puede modelar una matriz de 3 filas y 2 columnas o 2 filas y 3 columnas.
+b)
+si, en ese caso habria que acceder a cada posicion como m[fila*y + columna];
