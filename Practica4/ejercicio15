@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+int** retornarPiramide(int );
+void imprimirPiramide(int **,int);
+void destruirPiramide(int **,int);
+
+
+int main(){
+int n;
+printf("ingrese un numero n ");
+scanf("%d",&n);
+int **piramide=retornarPiramide(n);
+imprimirPiramide(piramide,n);
+destruirPiramide(piramide,n);
+
+
+}
+int** retornarPiramide(int n){
+int **piramide=(int**)malloc(n*sizeof(int*));
+for(int i=0;i<n;i++){
+    piramide[i]=(int *)malloc((i+1)*sizeof(int));
+}
+for(int i=0;i<n;i++){
+     piramide[i][0]=1;
+    for(int j=1;j<i;j++){
+     piramide[i][j]=piramide[i-1][j-1]+piramide[i-1][j];
+    }
+    piramide[i][i]=1;
+}
+return piramide;
+
+}
+
+void imprimirPiramide(int **piramide,int n){
+
+for(int i=0;i<n;i++){
+        printf("\n");
+    for(int j=0;j<=i;j++){
+       printf("%d  ",piramide[i][j]);
+    }
+
+}
+}
+void destruirPiramide(int **piramide,int n){
+  for(int i=0;i<n;i++)
+    free(piramide[i]);
+  free(piramide);
+
+}
