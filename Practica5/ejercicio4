@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LONG 300
+int main(){
+FILE *archivo;
+int c,num,max,diaMax;
+archivo=fopen("apuestas.txt","r");
+if(archivo==NULL){
+    printf("error al abrir el archivo");
+    return 0;
+}
+
+float total=0;
+float monto;
+int codigo;
+while(fscanf(archivo,"%d|%f;",&codigo,&monto)==2){
+    total=total+monto;
+}
+
+printf("el monto total apostado es %.2f",total);
+
+fclose(archivo);
+return 0;
+}
