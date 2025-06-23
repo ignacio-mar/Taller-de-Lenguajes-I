@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LONG 300
+int main(){
+FILE *archivo;
+int c,num,max,diaMax;
+archivo=fopen("precipitaciones.txt","r");
+if(archivo==NULL){
+    printf("error al abrir el archivo");
+    return 0;
+}
+max=-1;
+diaMax=0;
+for(int i=1;i<=31;i++){
+    c=getc(archivo);
+    num=c;
+    c=getc(archivo);
+    while(c!='-' && !feof(archivo)){
+        num=num*10+c;
+        c=getc(archivo);
+    }
+    if(num>max){
+        max=num;
+        diaMax=i;
+    }
+}
+printf(" el dia %d es el de mayor precipitacion",diaMax);
+
+fclose(archivo);
+return 0;
+}
