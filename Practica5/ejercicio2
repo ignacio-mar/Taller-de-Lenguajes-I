@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LONG 300
+int main(){
+FILE *archivo;
+int c;
+archivo=fopen("prueba.txt","r");
+if(archivo==NULL){
+    printf("error al abrir el archivo");
+    return 0;
+}
+int digitos=0;
+int mayus=0;
+int minus=0;
+while(!feof(archivo)){
+    c=fgetc(archivo);
+    if(c>='0' && c<='9'){
+       digitos++;
+    }else
+       if(c>='a' && c<='z'){
+        minus++;
+       }else
+         if(c>='A' && c<='Z'){
+            mayus++;
+            }
+}
+ printf("la cantidad de digitos son %d. La cantidad de minus son %d, y la cantidad de mayus son %d.",digitos,minus,mayus);
+ fclose(archivo);
+ return 0;
+}
