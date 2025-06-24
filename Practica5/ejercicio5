@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LONG 300
+#define max_palabra 30
+void generarEstructuraDinamica(char ***,int *);
+void verificar(char **palabras,char *palabra,int);
+void liberarLista(char **,int);
+int main(){
+char **palabras=NULL;
+int cant=0;
+generarEstructuraDinamica(&palabras,&cant);
+char palabra[max_palabra];
+printf("ingrese palabra: ");
+scanf("%s",palabra);
+while(strcmp(palabra,"zzz")!=0){
+    verificar(palabras,palabra,cant);
+    printf("\ningrese palabra:");
+    scanf("%s",palabra);
+}
+liberarLista(palabras,cant);
+return 0;
+}
+void generarEstructuraDinamica( char ***palabras,int *ptr){
+FILE *archivo;
+archivo=fopen("Diccionario.txt","r");
+if(archivo==NULL){
+    printf("error al abrir el archivo");
+    return 0;
+}
+    int cantidad=10;
+    char buffer[max_palabra];
+*palabras=(char **)malloc(cantidad*sizeof(char*));
+while(fgets(buffer, sizeof(buffer),archivo)!=NULL){
+    buffer[strcspn(buffer,'\n')]='\0';
+    (*palabras)[*ptr]=(char*)malloc(strlen(buffer)+1);
+    strcpy((*palabras)[*ptr],buffer);
+     (*ptr)++;
+     if((*ptr)==cantidad){
+        cantidad*=2;
+        (*palabras)=(char**)realloc(*palabras,cantidad*sizeof(char*));
+     }
+
+
+}
+ printf("%d palabras cargadas.\n", *ptr);
+fclose(archivo);
+
+}
+void verificar(char **palabras,char *palabra,int cant){
+int encontre=0;
+for(int i=0;i<cant && !encontre;i++){
+    if(!strcmp(palabras[i],palabra))
+        encontre=1;
+}
+
+if(encontre){
+    printf("existe en el diccionario");
+}else printf("NO existe en el diccionario");
+
+
+}
+void liberarLista(char ** palabras,int cant){
+for(int i=0;i<cant;i++){
+    free(palabras[i]);
+}
+free(palabras);
+
+}
