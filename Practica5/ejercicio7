@@ -1,0 +1,54 @@
+a)
+int main(){
+FILE *archivoFuente=fopen("fuente.txt","w");
+FILE *archivoDestino=fopen("destino.txt","r");
+if(archivoFuente=NULL || archivoDestino==NULL){
+    printf("alguno de los dos archivos no se pudo abrir correctamente");
+    return 0;
+}
+
+char c;
+while((c=fgetc(archivoFuente))!=EOF){
+    fputc(c,archivoDestino);
+}
+fclose(archivoFuente);
+fclose(archivoDestino);
+}
+
+b)
+
+int main(){
+FILE *archivoFuente=fopen("fuente.txt","w");
+FILE *archivoDestino=fopen("destino.txt","r");
+if(archivoFuente=NULL || archivoDestino==NULL){
+    printf("alguno de los dos archivos no se pudo abrir correctamente");
+    return 0;
+}
+
+char linea[max_linea];
+while(fgets(linea,max_linea,archivoFuente)!=NULL){
+    fputs(linea,archivoDestino);
+}
+fclose(archivoFuente);
+fclose(archivoDestino);
+}
+
+c)
+
+
+int main(){
+FILE *archivoFuente=fopen("fuente.txt","wb");
+FILE *archivoDestino=fopen("destino.txt","rb");
+if(archivoFuente=NULL || archivoDestino==NULL){
+    printf("alguno de los dos archivos no se pudo abrir correctamente");
+    return 0;
+}
+
+char linea[max_linea];
+while(fread(linea,sizeof(char),max_linea,archivoFuente)>0){
+    fwrite(linea,sizeof(char),strlen(linea),archivoFuente);
+}
+fclose(archivoFuente);
+fclose(archivoDestino);
+}
+
