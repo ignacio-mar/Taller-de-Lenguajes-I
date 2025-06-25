@@ -1,0 +1,23 @@
+int main(){
+FILE *archivoTexto=fopen("numeros.txt","w");
+FILE *archivoBinario=fopen("numeros.dat","wb");
+if(archivoTexto==NULL || archivoBinario==NULL){
+    printf("alguno de los dos archivos no se pudo abrir correctamente");
+    return 0;
+}
+
+int c;
+
+for(int i=0; i<10;i++){
+printf("ingrese numero del 0 al 9");
+scanf("%d",&c);
+fprintf(archivoTexto,"%d",c);
+fwrite(&c,sizeof(int),1,archivoBinario);
+}
+fclose(archivoTexto);
+fclose(archivoBinario);
+}
+
+
+
+Porque los editores de texto esperan caracteres imprimibles, no datos binarios. Al guardar enteros en formato binario, lo que se escribe son los bytes de su representación interna (en base 2), y eso no tiene correspondencia directa con letras o números visibles. El editor puede mostrarte símbolos raros o directamente nada legible.
