@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LONG 300
+#define max_palabra 20
+#define max_linea 200
+void crearNombres(char ***);
+int contar_columnas(char *linea);
+
+int main(){
+FILE *archivo;
+archivo=fopen("vinos.csv","r");
+if(archivo==NULL){
+    printf("error al abrir el archivo de vinos");
+    return 0;
+}
+char linea[max_linea];
+fgets(linea,max_linea,archivo);
+int columnas=contar_columnas(linea);
+float maximo[columnas];
+float minimo[columnas];
+for (int i=0;i<columnas;i++){
+    maximo[i]=-1000;
+    minimo[i]=9999999;
+}
+float suma[columnas]{0};   
+int contador=0;
+float dato;
+char c;
+while(fscanf(archivo,"%f",&dato)==1)){
+    suma[0]+=dato;
+    if(dato>maximo[i])
+            maximo[i]=dato;
+        
+    if(dato<minimo[i])
+            minimo[i]=dato;
+            
+    for(int i=1;i<columnas;i++){
+       if(fscanf(archivo,"%c,",&c)!=1)
+           break;
+       if(c!=',' && c!='\n')
+          break;
+       if(fscanf(archivo,"%f",%dato)!=1)
+          break;
+       suma[i]+=dato;
+       if(dato>maximo[i])
+            maximo[i]=dato;
+       if(dato<minimo[i])
+            minimo[i]=dato;  
+     }
+     contador++;   
+}
+
+FILE *archivo2=fopen("vinos_2.txt","w");
+if(archivo2==NULL){
+    printf("no se pudo abrir el archivo de texto");
+    return 0;
+}
+fprintf(archivo2,"%s","Atributo    ");
+fprintf(archivo2,"%s",linea); 
+fprintf(archivo2,"%s","Promedio    ");
+for(int i=0;i<columnas;i++)
+    fprintf(archivo2,"%f, ",suma[i]/contador);
+fprintf(archivo2,"\n");
+
+fprintf(archivo2,"%s","Minimo    ");
+for(int i=0;i<columnas;i++)
+    fprintf(archivo2,"%f, ",minimo[i]);
+fprintf(archivo2,"\n");
+
+fprintf(archivo2,"%s","Maximo    ");
+for(int i=0;i<columnas;i++)
+    fprintf(archivo2,"%f, ",maximo[i]);
+fclose(archivo);
+fclose(archivo2);
+
+}
+int contar_columnas(char *linea){
+     int cant=1;               
+for(int i=0;linea[i]!='\0';i++){
+    if(linea[i]==','){
+     cant++;
+    }
+}
+return cant;                    
+                
+}
+    
