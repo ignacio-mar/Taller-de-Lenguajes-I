@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LONG 300
+#define max_palabra 20
+#define max_linea 1000
+void crearNombres(char ***);
+int contar_columnas(char *linea);
+typedef struct jugador{
+  char nombre[max_palabra];
+  char apellido[max_palabra];
+  int edad;
+  int cantTitulos;
+  int ranking;
+  float fortuna;
+} jugador;
+
+int main(){
+
+FILE *archivoBinario=fopen("jugadores.dat","wb+");
+if(archivoBinario==NULL){
+    printf("alguno de los dos archivos no se pudo abrir correctamente");
+    return 0;
+}
+
+jugador j;
+for(int i=0;i<3;i++){
+   printf("ingrese nombre del jugador");
+    scanf("%s",j.nombre);
+    printf("ingrese apellido del jugador");
+    scanf("%s",j.apellido);
+    printf("ingrese edad del jugador");
+    scanf("%d",&j.edad);
+    printf("ingrese la cantidad de titulos del jugador");
+    scanf("%d",&j.cantTitulos);
+    printf("ingrese el ranking actual del jugador");
+    scanf("%d",&j.ranking);
+    printf("ingrese fortuna del jugador");
+    scanf("%f",&j.fortuna);
+    fwrite(&j,sizeof(jugador),1,archivoBinario);
+}
+jugador mejorRanking;
+int maxRanking=100000;
+jugador masTitulos;
+int maxTitulos=-111;
+fseek(archivoBinario,0,SEEK_SET);
+for(int i=0;i<3;i++){
+    fread(&j,sizeof(jugador),1,archivoBinario);
+    if(j.ranking<maxRanking){
+        maxRanking=j.ranking;
+        mejorRanking=j;
+    }
+    if(j.cantTitulos>maxTitulos){
+        maxTitulos=j.cantTitulos;
+        masTitulos=j;
+    }
+}
+fclose(archivoBinario);
+printf("el nombre y el apellido del jugador con mas titulos es %s %s\n",masTitulos.nombre,masTitulos.apellido);
+printf("el nombre y el apellido del jugador con mejor ranking es %s %s\n",mejorRanking.nombre,mejorRanking.apellido);
+
+ return 0;
+}
