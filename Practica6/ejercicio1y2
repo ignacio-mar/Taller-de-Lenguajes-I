@@ -1,0 +1,22 @@
+
+1)
+imprime:
+"1
+nombre del programa ejecutado"
+esto es debido a que solo se pasa el nombre del ejecutable como argumento y argv[0] siempre contiene la ruta o nombre del programa ejecutado.
+
+2)
+
+#include <stdio.h>
+#include <stdlib.h>
+int main (int argc, char * argv[]) {
+if(argc<5){
+    printf("no se pudieron pasar la cantidad de parametros deseados");
+   return 0;
+}
+int suma=0;
+for(int i=1;i<=4;i++){
+    suma+=atoi(argv[i]);
+}
+printf("promedio: %d",suma/4);
+}
