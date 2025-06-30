@@ -1,0 +1,26 @@
+a)  el codigo no compila debido a que cuando se usa la macro #define size 25, el preprocesador remplaza todos los size por 25
+pero si justo tenes algo como "int size=.." o "size.get()", se vuelve confuso porque ya existe algo llamado size como macro.
+
+b)
+PREPRPOCESAMIENTO:
+. el compilador remplaza #define size 25 con el numero 25 en todo el codigo.
+. inserta el contenido de <stdio.h> y <stdlib.h> como parte del archivo fuente.
+
+COMPILACION:
+. se verifica sintaxis y tipos.
+.genera advertencias si hay codigo sospechoso.
+
+c)
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 25
+void imprimir(int * v, int size){
+ int i;
+ for (i=0; i<size; i++){
+ printf("v[%d]= %d", i, v[i]);
+ }
+}
+int main(){
+ int v[tam];
+ imprimir(v, tam);
+ return 0;}
