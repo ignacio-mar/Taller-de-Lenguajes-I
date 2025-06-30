@@ -1,1 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 4) {
+        printf("Uso: %s num1 num2 operador\n", argv[0]);
+        return 1;
+    }
+
+    int n1 = atoi(argv[1]);
+    int n2 = atoi(argv[2]);
+    char op = argv[3][0];
+    float resultado;
+
+    switch (op) {
+        case '+':
+            resultado = n1 + n2;
+            break;
+        case '-':
+            resultado = n1 - n2;
+            break;
+        case '*':
+            resultado = n1 * n2;
+            break;
+        case '/':
+            if (n2 == 0) {
+                printf("Error: división por cero\n");
+                return 1;
+            }
+            resultado = (float)n1 / n2;
+            break;
+        default:
+            printf("Operador inválido: debe ser '+', '-', '*', o '/'\n");
+            return 1;
+    }
+
+    printf("Resultado: %.2f\n", resultado);
+    return 0;
+}
 
