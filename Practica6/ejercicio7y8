@@ -1,0 +1,24 @@
+7)
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX(x,y) (x>y)? x:y
+int main () {
+ int a, b;
+
+ scanf("%d%d", &a, &b);
+ printf("\n MAX(%d, %d) = %d", a, b, MAX(a,b));
+ return 0;
+}
+
+
+8)
+a)
+Si,compila, pero lo hace porque la linea dentro del bloque #if DEBUG no se incluyr en la compilacion
+debido a #define DEBUG 0 , entonces el bloque #if DEBUG ... #endif se omite completamente por el procesador.
+
+b) si cambio la constante simbolica DEBUG al valor 1 el codigo no compilaria debido a que la variable "y" no esta declarada.
+los beneficios de la compilacion condicional es que permite activar o desactivar bloques de codigo sin borrarlos, esto
+es ideal para depuracion o pruebas sin cambiar el flujo del programa.
+
+c) No se puede cambiar el valor de DEBUG  en tiempo de ejecucion debido a que la macro DEBUG es una constante de preprocesador.
+d) si seria #ifdef en vez de #if el bloque se compilaria si existe la macro DEBUG, sin importar su valor.
